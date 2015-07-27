@@ -28,6 +28,7 @@ jinja_environment = jinja2.Environment(loader=
 class User(ndb.Model):
     email = ndb.StringProperty(required=True)
 
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -42,4 +43,5 @@ class MainHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
+    ('/')
 ], debug=True)
