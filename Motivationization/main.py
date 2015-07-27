@@ -18,6 +18,16 @@ import webapp2
 import os
 import jinja2
 from google.appengine.ext import ndb
+from google.appengine.api import users
+
+
+jinja_environment = jinja2.Environment(loader=
+    jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+
+class User(ndb.Model):
+    email = ndb.StringProperty(required=True)
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -38,9 +48,21 @@ class Comment(ndb.Model):
     comment = ndb.TextProperty(required=True)
     datetime = ndb.DateTimeProperty(auto_now_add=True)
 
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        user = users.get_current_user()
+        if user:
+            greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                        (user.nickname(), users.create_logout_url('/')))
+            template = jinja_environment.get_template('templates/main.html')
+            self.response.out.write(template.render({"user": user.nickname()}))
+            self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
+        else:
+            greeting = ('<a href="%s">Sign in or register</a>.' %
+                        users.create_login_url('/'))
+
+            self.response.out.write('<html><body>%s</body></html>' % greeting)
 
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
@@ -80,8 +102,14 @@ class CommentHandler(webapp2.RequestHandler):
         post.put()
         self.redirect('/asksally')
 
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
     ('/asksally', SallyHandler),
+    ('/profile', ProfileHandler)
 ], debug=True)
