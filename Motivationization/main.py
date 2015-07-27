@@ -141,6 +141,9 @@ class QuestHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/results.html')
         self.response.out.write(template.render({'results': gif_url}))'''
 
+
+
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
