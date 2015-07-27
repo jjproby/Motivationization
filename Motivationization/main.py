@@ -82,8 +82,14 @@ class CommentHandler(webapp2.RequestHandler):
         post.put()
         self.redirect('/asksally')
 
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
+        self.response.write(template.render())
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
     ('/asksally', SallyHandler),
+    ('/profile', ProfileHandler)
 ], debug=True)
