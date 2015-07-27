@@ -55,11 +55,14 @@ class MainHandler(webapp2.RequestHandler):
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.nickname(), users.create_logout_url('/')))
+            template = jinja_environment.get_template('templates/main.html')
+            self.response.out.write(template.render({"user": user.nickname()}))
+            self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' %
                         users.create_login_url('/'))
 
-        self.response.out.write('<html><body>%s</body></html>' % greeting)
+            self.response.out.write('<html><body>%s</body></html>' % greeting)
 
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
