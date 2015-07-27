@@ -28,6 +28,7 @@ jinja_environment = jinja2.Environment(loader=
 class User(ndb.Model):
     email = ndb.StringProperty(required=True)
 
+
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -46,6 +47,7 @@ class Comment(ndb.Model):
     name = ndb.StringProperty(required=True)
     comment = ndb.TextProperty(required=True)
     datetime = ndb.DateTimeProperty(auto_now_add=True)
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
