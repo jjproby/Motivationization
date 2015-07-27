@@ -19,7 +19,6 @@ import os
 import jinja2
 from google.appengine.ext import ndb
 
-
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
