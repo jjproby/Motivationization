@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% autoescape true %}
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="/static/main.css">
@@ -7,6 +8,38 @@
   </head>
 
   <body>
+    <h1>Ask Sally</h1>
+    <hr>
+    <form action="/asksally" method="post">
+      <div>Name: <br><input name="title"></input></div>
+      <div>Question: <br><textarea name="content" rows="3" cols="60"></textarea></div>
+      <div><input type="submit" value="Add Post"></div>
+    </form>
 
+    <hr>
+
+    <h2>Previously Asked Questions</h2>
+    <hr>
+    {% for post in posts %}
+      <h3>Name: {{ post.title }}</h3>
+      <h5>{{ post.date.strftime("%d/%m/%y") }}</h5>
+      <p>{{ post.content }}</p>
+      {% for comment_key in post.comment_keys %}
+        <h3>Commenter: {{ comment_key.get().name }}</h3>
+        <!--<h5> comment_key.datetime.strftime("%d/%m/%y") }}</h5>-->
+        <p>{{ comment_key.get().comment }}</p>
+      {% endfor %}
+      <!-- This form is to create a new comment, it needs to send to '/comment using the post method' -->
+      <form action="/comment" method="post">
+        <!-- It needs to take inputs for the commenters name and comment -->
+        <p>Name: <br><input type="text" name="name2"/></p>
+        <p>Comment: <br><textarea name="comment" rows="3" cols="60"></textarea></p>
+        <!-- This next line is a sneaky way to make sure we know what post we are talking about -->
+        <div><input type="hidden" name="post_url_key" value="{{ post.key.urlsafe() }}">
+        <div><input type="submit" value="Leave Comment"></div>
+      </form>
+      <hr>
+    {% endfor %}
   </body>
 </html>
+{% endautoescape %}
