@@ -149,6 +149,8 @@ app = webapp2.WSGIApplication([
     ('/motivation', MotivateHandler),
     ('/laughs', LaughHandler),
     ('/question', QuestHandler),
-    ('/quote', QuoteHandler),
-    ('/gif', GifHandler),
+    ('/lquote', LQuoteHandler),
+    ('/mquote', MQuoteHandler),
+    ('/lgif', LGifHandler),
+    ('/Mgif', MGifHandler),
 ], debug=True)
