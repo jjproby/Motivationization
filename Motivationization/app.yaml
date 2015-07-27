@@ -19,7 +19,7 @@ handlers:
   script: main.app
 
 - url: /_ah/login_required
-  script: do_openid_login.app
+  script: app.py
 
 libraries:
 - name: jinja2
