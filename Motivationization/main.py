@@ -61,7 +61,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            
+
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.nickname(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
@@ -161,36 +161,6 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-class MGifsHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#gif')
-        self.response.write(template.render())
-
-class LGifsHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#gif')
-        self.response.write(template.render())
-
-class LVidHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#vid')
-        self.response.write(template.render())
-
-class MVidHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#vid')
-        self.response.write(template.render())
-
-class LGamesHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#game')
-        self.response.write(template.render())
-
-class MQuotesHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#quote')
-        self.response.out.write(template.render(path, {}))
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -202,5 +172,4 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-
 ], debug=True)
