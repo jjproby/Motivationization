@@ -32,6 +32,7 @@ jinja_environment = jinja2.Environment(loader=
 
 class User(ndb.Model):
     email = ndb.StringProperty(required=True)
+    feelings = ndb.BlobProperty(indexed=True)
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -159,6 +160,39 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
+<<<<<<< HEAD
+=======
+class MGifsHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#gif')
+        self.response.write(template.render())
+
+class LGifsHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#gif')
+        self.response.write(template.render())
+
+class LVidHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#vid')
+        self.response.write(template.render())
+
+class MVidHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#vid')
+        self.response.write(template.render())
+
+class LGamesHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#game')
+        self.response.write(template.render())
+
+class MQuotesHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#quote')
+        self.response.out.write(template.render(path, {}))
+
+>>>>>>> 839c3533037fe07d8078d697d700f5cc9f09bc63
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -170,4 +204,8 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 839c3533037fe07d8078d697d700f5cc9f09bc63
 ], debug=True)
