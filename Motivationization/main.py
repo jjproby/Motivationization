@@ -32,6 +32,7 @@ jinja_environment = jinja2.Environment(loader=
 
 class User(ndb.Model):
     email = ndb.StringProperty(required=True)
+    feelings = ndb.BlobProperty(indexed=True)
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
