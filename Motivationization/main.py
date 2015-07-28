@@ -17,6 +17,11 @@
 import webapp2
 import os
 import jinja2
+
+import json
+import random
+import logging
+from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
@@ -33,6 +38,8 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
+
+gif_url = ""
 
 # Define a Post model for the Datastore
 class Post(ndb.Model):
@@ -109,9 +116,95 @@ class ProfileHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
         self.response.write(template.render())
 
+
+class MotivateHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html')
+        self.response.write(template.render())
+
+class LaughHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html')
+        self.response.write(template.render())
+
+class QuestHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
+        self.response.write(template.render())
+
+class LQuoteHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
+        self.response.write(template.render())
+
+class MGifHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
+        self.response.write(template.render())
+
+class LGifHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
+        self.response.write(template.render())
+
+'''class MQuoteHandler(webapp2.RequestHandler):
+    #def get(self):
+        #template = jinja_environment.get_template('/templates/search.html')
+        #self.response.out.write(template.render())
+    def post(self):
+        giphy_data_source = urlfetch.fetch("http://api.theysaidso.com/qod.json?category=inspire")
+        giphy_json_content = giphy_data_source.content
+        parsed_giphy_dictionary = json.loads(giphy_json_content)
+        logging.info("%s", parsed_giphy_dictionary)
+        logging.info("%s", giphy_data_source.content)
+        gif_url= parsed_giphy_dictionary['success']['contents']['quotes'][0]['quote']
+        self.response.write(parsed_giphy_dictionary['success']['contents']['quotes'][0]['quote'])
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html')
+        self.response.write(template.render({'results': gif_url}))'''
+
+
+class LGifHandler(webapp2.RequestHandler):
+
+    def get(self):
+        base_url = 'http://api.giphy.com/v1/gifs/search?q='
+        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
+        search_term = 'hilarious'
+        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
+        giphy_json_content = giphy_data_source.content
+        parsed_giphy_dictionary = json.loads(giphy_json_content)
+        rand_num = random.randint(0,39)
+        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
+        template = jinja_environment.get_template('templates/laughs.html')
+        self.response.out.write(template.render({'results': gif_url}))
+
+
+class MGifHandler(webapp2.RequestHandler):
+
+
+    def get(self):
+        base_url = 'http://api.giphy.com/v1/gifs/search?q='
+        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
+        search_term = 'motivation'
+        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
+        giphy_json_content = giphy_data_source.content
+        parsed_giphy_dictionary = json.loads(giphy_json_content)
+        rand_num = random.randint(0,39)
+        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
+        template = jinja_environment.get_template('templates/motivation.html')
+        self.response.out.write(template.render({'results': gif_url}))
+
+
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
     ('/asksally', SallyHandler),
-    ('/profile', ProfileHandler)
+    ('/profile', ProfileHandler),
+    ('/motivation', MotivateHandler),
+    ('/laughs', LaughHandler),
+    ('/question', QuestHandler),
+    ('/lquote', LQuoteHandler),
+    #('/mquote', MQuoteHandler),
+    ('/lgif', LGifHandler),
+    ('/mgif', MGifHandler),
 ], debug=True)
