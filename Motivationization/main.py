@@ -17,6 +17,7 @@
 import webapp2
 import os
 import jinja2
+
 import json
 import random
 import logging
@@ -70,6 +71,8 @@ class MainHandler(webapp2.RequestHandler):
 
             self.response.out.write('<html><body>%s</body></html>' % greeting)
 
+
+
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
         # Get all of the student data from the datastore
@@ -113,6 +116,7 @@ class ProfileHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
         self.response.write(template.render())
 
+
 class MotivateHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html')
@@ -143,6 +147,11 @@ class LGifHandler(webapp2.RequestHandler):
 
 
 class MGifHandler(webapp2.RequestHandler):
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e1330bf22678a5ba8510627843ac579a65a7bd4b
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -184,6 +193,7 @@ class MQuotesHandler(webapp2.RequestHandler):
     def get(self):
         path = os.path.join(os.path.dirname(__file__), '/templates/motivation.html#quote')
         self.response.out.write(template.render(path, {}))
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
