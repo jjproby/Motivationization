@@ -187,7 +187,7 @@ class LGamesHandler(webapp2.RequestHandler):
 
 class MQuotesHandler(webapp2.RequestHandler):
     def get(self):
-        path = os.path.join(os.path.dirname(__file__), '/templates/motivation.html#quote')
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#quote')
         self.response.out.write(template.render(path, {}))
 
 
@@ -201,10 +201,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-    ('/mgifs', MGifsHandler),
-    ('/lgifs', LGifsHandler),
-    ('/mvids', MVidHandler),
-    ('/lvids', LVidHandler),
-    ('/mquotes', MQuotesHandler),
-    ('/lgames', LGamesHandler),
+    
 ], debug=True)
