@@ -61,6 +61,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.nickname(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
@@ -162,6 +163,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
+<<<<<<< HEAD
 
         #url = self.response.get('gif_url')
         #gif = Gif(url = url)
@@ -201,6 +203,8 @@ class MQuotesHandler(webapp2.RequestHandler):
 
 
 class
+=======
+>>>>>>> d2ae5f1a8872edadb5c2715af2c5f36bae800158
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
