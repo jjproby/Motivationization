@@ -133,39 +133,7 @@ class QuestHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
         self.response.write(template.render())
 
-class LQuoteHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
-        self.response.write(template.render())
-
-class MGifHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
-        self.response.write(template.render())
-
 class LGifHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
-        self.response.write(template.render())
-
-'''class MQuoteHandler(webapp2.RequestHandler):
-    #def get(self):
-        #template = jinja_environment.get_template('/templates/search.html')
-        #self.response.out.write(template.render())
-    def post(self):
-        giphy_data_source = urlfetch.fetch("http://api.theysaidso.com/qod.json?category=inspire")
-        giphy_json_content = giphy_data_source.content
-        parsed_giphy_dictionary = json.loads(giphy_json_content)
-        logging.info("%s", parsed_giphy_dictionary)
-        logging.info("%s", giphy_data_source.content)
-        gif_url= parsed_giphy_dictionary['success']['contents']['quotes'][0]['quote']
-        self.response.write(parsed_giphy_dictionary['success']['contents']['quotes'][0]['quote'])
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html')
-        self.response.write(template.render({'results': gif_url}))'''
-
-
-class LGifHandler(webapp2.RequestHandler):
-
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -180,8 +148,6 @@ class LGifHandler(webapp2.RequestHandler):
 
 
 class MGifHandler(webapp2.RequestHandler):
-
-
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -194,6 +160,35 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
+class MGifsHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#gif')
+        self.response.write(template.render())
+
+class LGifsHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#gif')
+        self.response.write(template.render())
+
+class LVidHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#vid')
+        self.response.write(template.render())
+
+class MVidHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#vid')
+        self.response.write(template.render())
+
+class LGamesHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#game')
+        self.response.write(template.render())
+
+class MQuotesHandler(webapp2.RequestHandler):
+    def get(self):
+        path = os.path.join(os.path.dirname(__file__), '/templates/motivation.html#quote')
+        self.response.out.write(template.render(path, {}))
 
 
 app = webapp2.WSGIApplication([
@@ -204,8 +199,12 @@ app = webapp2.WSGIApplication([
     ('/motivation', MotivateHandler),
     ('/laughs', LaughHandler),
     ('/question', QuestHandler),
-    ('/lquote', LQuoteHandler),
-    #('/mquote', MQuoteHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
+    ('/mgifs', MGifsHandler),
+    ('/lgifs', LGifsHandler),
+    ('/mvids', MVidHandler),
+    ('/lvids', LVidHandler),
+    ('/mquotes', MQuotesHandler),
+    ('/lgames', LGamesHandler),
 ], debug=True)
