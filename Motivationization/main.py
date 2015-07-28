@@ -146,6 +146,8 @@ class LGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/laughs.html')
         self.response.out.write(template.render({'results': gif_url}))
 
+#class Gif(ndb.Model):
+    #url = ndb.StringProperty()
 
 class MGifHandler(webapp2.RequestHandler):
     def get(self):
@@ -160,8 +162,13 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-<<<<<<< HEAD
-=======
+
+        #url = self.response.get('gif_url')
+        #gif = Gif(url = url)
+        #key = gif.put()
+        #id_var = key.id
+
+
 class MGifsHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#gif')
@@ -192,7 +199,8 @@ class MQuotesHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#quote')
         self.response.out.write(template.render(path, {}))
 
->>>>>>> 839c3533037fe07d8078d697d700f5cc9f09bc63
+
+class
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -204,8 +212,4 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-<<<<<<< HEAD
-=======
-    
->>>>>>> 839c3533037fe07d8078d697d700f5cc9f09bc63
 ], debug=True)
