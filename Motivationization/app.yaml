@@ -16,6 +16,7 @@ handlers:
   upload: favicon\.ico
 
 - url: .*
+  login: required
   script: main.app
 
 - url: /_ah/login_required

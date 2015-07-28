@@ -30,7 +30,7 @@ jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
-class User(ndb.Model):
+class Profile(ndb.Model):
     email = ndb.StringProperty(required=True)
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
@@ -62,10 +62,13 @@ class Comment(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        current_profile = Profile.get_by_id(user.user_id())
+        if current_profile == None:
+            current_profile = Profile(email = user.nickname())
+            current_profile.put()
         if user:
-
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                        (user.nickname(), users.create_logout_url('/')))
+                        (user.user_id(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
             self.response.out.write(template.render({"user": user.nickname()}))
             self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
