@@ -159,6 +159,36 @@ class LGifHandler(webapp2.RequestHandler):
         self.response.write(template.render({'results': gif_url}))'''
 
 
+class LGifHandler(webapp2.RequestHandler):
+
+    def get(self):
+        base_url = 'http://api.giphy.com/v1/gifs/search?q='
+        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
+        search_term = 'hilarious'
+        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
+        giphy_json_content = giphy_data_source.content
+        parsed_giphy_dictionary = json.loads(giphy_json_content)
+        rand_num = random.randint(0,39)
+        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
+        template = jinja_environment.get_template('templates/laughs.html')
+        self.response.out.write(template.render({'results': gif_url}))
+
+
+class MGifHandler(webapp2.RequestHandler):
+    
+
+    def get(self):
+        base_url = 'http://api.giphy.com/v1/gifs/search?q='
+        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
+        search_term = 'motivation'
+        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
+        giphy_json_content = giphy_data_source.content
+        parsed_giphy_dictionary = json.loads(giphy_json_content)
+        rand_num = random.randint(0,39)
+        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
+        template = jinja_environment.get_template('templates/motivation.html')
+        self.response.out.write(template.render({'results': gif_url}))
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
