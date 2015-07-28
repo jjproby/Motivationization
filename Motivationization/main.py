@@ -34,6 +34,8 @@ class User(ndb.Model):
     email = ndb.StringProperty(required=True)
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
+    feelings = ndb.BlobProperty(indexed=True)
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -61,6 +63,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.nickname(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
@@ -165,6 +168,8 @@ class LGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/laughs.html')
         self.response.out.write(template.render({'results': gif_url}))
 
+#class Gif(ndb.Model):
+    #url = ndb.StringProperty()
 
 class MGifHandler(webapp2.RequestHandler):
     def get(self):
@@ -178,6 +183,11 @@ class MGifHandler(webapp2.RequestHandler):
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
+
+        #url = self.response.get('gif_url')
+        #gif = Gif(url = url)
+        #key = gif.put()
+        #id_var = key.id
 
 
 app = webapp2.WSGIApplication([
