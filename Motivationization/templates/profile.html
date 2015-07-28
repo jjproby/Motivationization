@@ -11,5 +11,32 @@
     <button onclick="sad()"><img src = "https://invigs365.files.wordpress.com/2014/08/sad-emoji.png"></button>
     <button onclick="neutral()"><img src = "http://cdn.shopify.com/s/files/1/0185/5092/products/persons-0052.png?v=1369543755"></button>
     <button onclick="happy()"><img src = "http://vaks.in/wp-content/uploads/2012/07/e057.png"></button>
+    <br>
+    <!--{% for post_key in post_keys %}
+      <h3>Name: {{ post_key.get().title }}</h3>
+      <h5>{{ post_key.get().date.strftime("%d/%m/%y") }}</h5>
+      <p>{{ post_key.get().content }}</p>
+      {% for comment_key in post.comment_keys %}
+        <h3>Commenter: {{ comment_key.get().name }}</h3>
+        <!--<h5> comment_key.datetime.strftime("%d/%m/%y") }}</h5>-->
+  <!--      <p>{{ comment_key.get().comment }}</p>
+      {% endfor %}
+      <!-- This form is to create a new comment, it needs to send to '/comment using the post method' -->
+<!--      <form action="/comment" method="post">
+        <!-- It needs to take inputs for the commenters name and comment -->
+<!--        <p>Name: <br><input type="text" name="name2"/></p>
+        <p>Comment: <br><textarea name="comment" rows="3" cols="60"></textarea></p>
+        <!-- This next line is a sneaky way to make sure we know what post we are talking about -->
+  <!--      <div><input type="hidden" name="post_url_key" value="{{ post.key.urlsafe() }}">
+        <div><input type="submit" value="Leave Comment"></div>
+      </form>
+      <hr>
+    {% endfor %}-->
+    <footer>
+      <a href="https://twitter.com/intent/tweet?url=http://www.motivation.com/&amp;text=Motivation."><img src = "http://www.goodwillsacto.org/wp-content/uploads/2010/09/TwitterIcon_small1.png">
+      <a href="https://plus.google.com/share?url=http://www.motivation.com/"><img src = "http://pictures.dealer.com/l/larichesubarusoa/1414/755d4e96d57951d987ead8a99dda4661x.jpg">
+      <a href="http://www.linkedin.com/shareArticle?url=http://www.motivation.com/"><img src = "http://static1.squarespace.com/static/541c4101e4b0462bd0eee674/t/544e3272e4b0529748d72c43/1414410866668/linkedin-icon(small).png">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.motivation.com/"><img src = "http://www.chas.co.uk/Images/Facebook_icon_small.gif">
+    </footer>
   </body>
 </html>
