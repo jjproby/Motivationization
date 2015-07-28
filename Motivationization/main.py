@@ -61,6 +61,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+            
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.nickname(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
@@ -201,5 +202,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-    
+
 ], debug=True)
