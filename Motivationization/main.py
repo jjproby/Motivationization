@@ -17,9 +17,6 @@
 import webapp2
 import os
 import jinja2
-import json
-import random
-from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
@@ -64,8 +61,10 @@ class MainHandler(webapp2.RequestHandler):
         else:
             greeting = ('<a href="%s">Sign in</a>' %
                         users.create_login_url('/'))
-        
+
             self.response.out.write('<html><body>%s</body></html>' % greeting)
+
+
 
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
@@ -110,50 +109,9 @@ class ProfileHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
         self.response.write(template.render())
 
-class MotivateHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html')
-        self.response.write(template.render())
-
-class LaughHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html')
-        self.response.write(template.render())
-
-class QuestHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
-        self.response.write(template.render())
-
-'''class QuoteHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_environment.get_template('/templates/search.html')
-        self.response.out.write(template.render())
-    def post(self):
-        base_url = 'http://api.giphy.com/v1/gifs/search?q='
-        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=10'
-        search_term = self.request.get('term')
-        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
-        giphy_json_content = giphy_data_source.content
-        parsed_giphy_dictionary = json.loads(giphy_json_content)
-        rand_num = random.randint(0,9)
-        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
-        template = jinja_environment.get_template('templates/results.html')
-        self.response.out.write(template.render({'results': gif_url}))'''
-
-
-
-
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
     ('/asksally', SallyHandler),
-    ('/profile', ProfileHandler),
-    ('/motivation', MotivateHandler),
-    ('/laughs', LaughHandler),
-    ('/question', QuestHandler),
-    ('/lquote', LQuoteHandler),
-    ('/mquote', MQuoteHandler),
-    ('/lgif', LGifHandler),
-    ('/Mgif', MGifHandler),
+    ('/profile', ProfileHandler)
 ], debug=True)
