@@ -159,36 +159,6 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-class MGifsHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#gif')
-        self.response.write(template.render())
-
-class LGifsHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#gif')
-        self.response.write(template.render())
-
-class LVidHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#vid')
-        self.response.write(template.render())
-
-class MVidHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html#vid')
-        self.response.write(template.render())
-
-class LGamesHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html#game')
-        self.response.write(template.render())
-
-class MQuotesHandler(webapp2.RequestHandler):
-    def get(self):
-        path = os.path.join(os.path.dirname(__file__), '/templates/motivation.html#quote')
-        self.response.out.write(template.render(path, {}))
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -200,10 +170,4 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-    ('/mgifs', MGifsHandler),
-    ('/lgifs', LGifsHandler),
-    ('/mvids', MVidHandler),
-    ('/lvids', LVidHandler),
-    ('/mquotes', MQuotesHandler),
-    ('/lgames', LGamesHandler),
 ], debug=True)
