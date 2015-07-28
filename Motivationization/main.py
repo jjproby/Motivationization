@@ -147,11 +147,6 @@ class LGifHandler(webapp2.RequestHandler):
 
 
 class MGifHandler(webapp2.RequestHandler):
-<<<<<<< HEAD
-=======
-
-
->>>>>>> e1330bf22678a5ba8510627843ac579a65a7bd4b
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
