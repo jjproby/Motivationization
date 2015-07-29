@@ -192,11 +192,12 @@ class Favorites(webapp2.RequestHandler):
         parsed_giphy_dictionary = json.loads(giphy_json_content)
         rand_num = random.randint(0,39)
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
-        template = jinja_environment.get_template('templates/laughs.html')
+        template = jinja_environment.get_template('templates/profile.html')
         current_profile = GetProfile()
         url = gif_url
         current_profile.favorite.append(url)
         current_profile.put()
+        self.response.out.write(template.render())
 
 
 
