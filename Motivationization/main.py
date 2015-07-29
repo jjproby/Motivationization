@@ -37,7 +37,7 @@ class Profile(ndb.Model):
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
-    url = ndb.StringProperty()
+    favorite = ndb.StringProperty(repeated=True)
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -60,14 +60,18 @@ class Comment(ndb.Model):
     comment = ndb.TextProperty(required=True)
     datetime = ndb.DateTimeProperty(auto_now_add=True)
 
+def GetProfile():
+    user = users.get_current_user()
+    current_profile = Profile.get_by_id(user.user_id())
+    if current_profile == None:
+        current_profile = Profile(email = user.nickname(), id = user.user_id())
+        current_profile.put()
+    return current_profile
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        GetProfile()
         user = users.get_current_user()
-        current_profile = Profile.get_by_id(user.user_id())
-        if current_profile == None:
-            current_profile = Profile(email = user.nickname(), id = user.user_id())
-            current_profile.put()
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.user_id(), users.create_logout_url('/')))
@@ -190,15 +194,13 @@ class MGifHandler(webapp2.RequestHandler):
         parsed_giphy_dictionary = json.loads(giphy_json_content)
         rand_num = random.randint(0,39)
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
-        template = jinja_environment.get_template('templates/laughs.html')
-
-        profile_user = Profile.get_current_user()
+        template = jinja_environment.get_template('templates/profile.html')
+        current_profile = GetProfile()
         url = gif_url
-        profile_user.url = url
-        profile_user.put()
+        current_profile.favorite.append(url)
+        current_profile.put()
+        self.response.out.write(template.render())
 
-
-        #self.response.out.write(template.render({'results': gif_url}))'''
 
 class SendEmail(webapp2.RequestHandler):
     def get(self):
