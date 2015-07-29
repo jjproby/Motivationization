@@ -203,9 +203,6 @@ class Favorites(webapp2.RequestHandler):
         current_profile.put()
         self.response.out.write(template.render())
 
-
-
-
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
