@@ -184,7 +184,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-'''class Favorites(webapp2.RequestHandler):
+class Favorites(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
