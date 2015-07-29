@@ -25,6 +25,8 @@ from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
+from google.appengine.api import mail
+
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -178,7 +180,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-class Favorites(webapp2.RequestHandler):
+'''class Favorites(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -197,6 +199,11 @@ class Favorites(webapp2.RequestHandler):
 
 
         #self.response.out.write(template.render({'results': gif_url}))'''
+
+class SendEmail(webapp2.RequestHandler):
+    def get(self):
+        user_address = Profile.
+
 
 
 app = webapp2.WSGIApplication([
