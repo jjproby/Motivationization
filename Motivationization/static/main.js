@@ -16,12 +16,10 @@ var ns6 = document.getElementById&&!document.all; //detect netscape 6
 
 // place your images, text, etc in the array elements here
 var items = new Array();
-    items[0]="<img alt='Motivationization' src=' /images/motivation.jpg' height='600' width='1000' border='0' />"; //a linked image
-    items[1]="<img alt='Motivationization' src='/images/fun.jpg' height='600' width='1000' border='0' />"; //a linked image
-    items[2]="<img alt='Motivationization' src='/images/fun2.jpg' height='600' width='1000' border='0' />"; //a linked image
-    items[3]="<img alt='Motivationization' src='/images/fun3.jpg' height='600' width='1000' border='0' />"; //a linked image
-    items[4]="<img alt='Motivationization' src='/images/fun4.jpg' height='600' width='1000' border='0' />"; //a linked image
-    items[5]="<img alt='Motivationization' src='/images/landscape8.jpg' height='600' width='1000' border='0' />"; //a linked image
+    items[0]="<img class='slideshow' alt='Motivationization' src='/images/fun.jpg' height='600' width='1000' border='0' />"; //a linked image
+    items[1]="<img class='slideshow' alt='Motivationization' src='/images/balloonPic.jpg' height='600' width='1000' border='0' />"; //a linked image
+    items[2]="<img class='slideshow' alt='Motivationization' src='/images/fun3.jpg' height='600' width='1000' border='0' />"; //a linked image
+    items[3]="<img class='slideshow' alt='Motivationization' src='/images/fun4.jpg' height='600' width='1000' border='0' />"; //a linked image
 function rotater() {
     document.getElementById("placeholder").innerHTML = items[current];
     current = (current==items.length-1) ? 0 : current + 1;

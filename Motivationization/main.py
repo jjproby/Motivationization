@@ -35,7 +35,7 @@ class Profile(ndb.Model):
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
-    #url = ndb.StringProperty()
+    url = ndb.StringProperty()
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -64,7 +64,7 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         current_profile = Profile.get_by_id(user.user_id())
         if current_profile == None:
-            current_profile = Profile(email = user.nickname())
+            current_profile = Profile(email = user.nickname(), id = user.user_id())
             current_profile.put()
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
@@ -178,7 +178,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-'''class Favorites(webapp2.RequestHandler):
+class Favorites(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -190,10 +190,10 @@ class MGifHandler(webapp2.RequestHandler):
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
         template = jinja_environment.get_template('templates/laughs.html')
 
-        #profile_user = Profile.get_current_user()
-        #url = gif_url
-        #profile_user.url = url
-        #profile_user.put()
+        profile_user = Profile.get_current_user()
+        url = gif_url
+        profile_user.url = url
+        profile_user.put()
 
 
         #self.response.out.write(template.render({'results': gif_url}))'''
@@ -209,5 +209,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-    #('/fav', Favorites),
+    ('/fav', Favorites),
 ], debug=True)
