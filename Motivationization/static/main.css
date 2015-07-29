@@ -1,16 +1,20 @@
-html{
+@import url(http://fonts.googleapis.com/css?family=Hind);
 
+html{
   background-size: 1000px;
   background-color: #333;
   color: #000;
+  font-family: 'Hind', sans-serif;
   /*background-attachment: fixed;*/
-
 }
 
 h1{
   font-size: 600%;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #133;
+  text-transform: uppercase;
+  position: absolute;
+  top: 200px;
   /*text-shadow:
     10px -10px 0 #144,
     -10px 10px 0 #133,
@@ -22,6 +26,8 @@ h2{
   font-size: 300%;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #133;
+  position: absolute;
+  text-align: center;
 }
 
 .nav ul {
@@ -112,12 +118,16 @@ p{
   border-color: #399;
 }
 
-img{
+/*img{
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-style: ridge;
   border-color: #399;
   border-width: 10px;
+}*/
+img{
+  position: relative;
+
 }
 
 div.pages{
@@ -127,7 +137,7 @@ div.pages{
   left: 0;
   right: 0;
   margin: auto;
-  background-image: url("/images/motivation.jpg");
+  /*background-image: url("/images/motivation.jpg");*/
   background-position: top right;
   background-repeat: no-repeat;
   background-size: contain;

@@ -35,8 +35,7 @@ class Profile(ndb.Model):
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
-
-    url = ndb.StringProperty()
+    #url = ndb.StringProperty()
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -73,7 +72,7 @@ class MainHandler(webapp2.RequestHandler):
             template = jinja_environment.get_template('templates/main.html')
             self.response.out.write(template.render({"user": user.nickname()}))
             self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
-#things
+#things22
 
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
@@ -179,7 +178,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-class Favorites(webapp2.RequestHandler):
+'''class Favorites(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -189,14 +188,15 @@ class Favorites(webapp2.RequestHandler):
         parsed_giphy_dictionary = json.loads(giphy_json_content)
         rand_num = random.randint(0,39)
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
-        template = jinja_environment.get_template('templates/profile.htm')
+        template = jinja_environment.get_template('templates/laughs.html')
 
-        url = self.response.get('gif_url')
-        gif = User(url = url)
-        key = gif.put()
-        id_var = key.id
+        #profile_user = Profile.get_current_user()
+        #url = gif_url
+        #profile_user.url = url
+        #profile_user.put()
 
-        self.response.out.write(template.render({'results': gif_url}))
+
+        #self.response.out.write(template.render({'results': gif_url}))'''
 
 
 app = webapp2.WSGIApplication([
@@ -209,5 +209,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-    ('/fav', Favorites),
+    #('/fav', Favorites),
 ], debug=True)
