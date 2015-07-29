@@ -36,6 +36,7 @@ class User(ndb.Model):
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
 
+    url = ndb.StringProperty()
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -168,9 +169,6 @@ class LGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/laughs.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-#class Gif(ndb.Model):
-    #url = ndb.StringProperty()
-
 class MGifHandler(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
@@ -184,10 +182,24 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-        #url = self.response.get('gif_url')
-        #gif = Gif(url = url)
-        #key = gif.put()
-        #id_var = key.id
+class Favorites(webapp2.RequestHandler):
+    def get(self):
+        base_url = 'http://api.giphy.com/v1/gifs/search?q='
+        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
+        search_term = 'motivation'
+        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
+        giphy_json_content = giphy_data_source.content
+        parsed_giphy_dictionary = json.loads(giphy_json_content)
+        rand_num = random.randint(0,39)
+        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
+        template = jinja_environment.get_template('templates/profile.htm')
+
+        url = self.response.get('gif_url')
+        gif = User(url = url)
+        key = gif.put()
+        id_var = key.id
+
+        self.response.out.write(template.render({'results': gif_url}))
 
 
 app = webapp2.WSGIApplication([
@@ -200,4 +212,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
+    ('/fav', Favorites),
 ], debug=True)
