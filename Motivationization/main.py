@@ -36,7 +36,6 @@ class Profile(ndb.Model):
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
     favorite = ndb.StringProperty(repeated=True)
-    #url = ndb.StringProperty()
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -199,8 +198,6 @@ class Favorites(webapp2.RequestHandler):
         current_profile.favorite.append(url)
         current_profile.put()
 
-
-        #self.response.out.write(template.render({'results': gif_url}))
 
 
 app = webapp2.WSGIApplication([
