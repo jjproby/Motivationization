@@ -131,6 +131,7 @@ class CommentHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
+        current_profile = GetProfile()
         '''    user = users.get_current_user()
         # Get all of the student data from the datastore
         q = users.get_current_user()
@@ -140,7 +141,8 @@ class ProfileHandler(webapp2.RequestHandler):
             'post_keys' : users.get_current_user().post_keys
         }'''
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
-        self.response.write(template.render())
+        self.response.write(template.render({'images' : current_profile.favorite}))
+
 
 
 class MotivateHandler(webapp2.RequestHandler):
@@ -202,10 +204,6 @@ class Favorites(webapp2.RequestHandler):
         self.response.out.write(template.render())
 
 
-class SendEmail(webapp2.RequestHandler):
-    def get(self):
-        user_address = Profile.
-
 
 
 app = webapp2.WSGIApplication([
@@ -219,4 +217,5 @@ app = webapp2.WSGIApplication([
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
     ('/fav', Favorites),
+
 ], debug=True)
