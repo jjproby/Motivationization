@@ -64,7 +64,7 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         current_profile = Profile.get_by_id(user.user_id())
         if current_profile == None:
-            current_profile = Profile(email = user.nickname())
+            current_profile = Profile(email = user.nickname(), id = user.user_id())
             current_profile.put()
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
