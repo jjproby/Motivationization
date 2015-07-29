@@ -10,6 +10,7 @@
 
   <body>
   <div class="pages">
+    <layer id="placeholderlayer"></layer><div id="placeholderdiv"></div>
     <h1>
       motivationization
     </h1>
@@ -18,22 +19,21 @@
     </h2>
     <div class="nav">
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/asksally">Sally</a></li>
-      <li><a href="/motivation">Motivation</a></li>
+      <li style="background-color:red"><a href="/">Home</a></li>
+      <li style="background-color:orange"><a href="/asksally">Sally</a></li>
+      <li style="background-color:yellow"><a href="/motivation">Motivation</a></li>
         <ul>
           <li><a href="/motivation#quotes">Quotes of the Day</a></li>
           <li><a href="/motivation#gif">Motivational Gifs</a></li>
           <li><a href="motivation#vid">Inspirational Videos</a></li>
-
         </ul>
-      <li><a href="/laughs">Laughs</a></li>
+      <li style="background-color:green"><a href="/laughs">Laughs</a></li>
         <ul>
           <li><a href="/laughs#gif">Funny Gifs</a></li>
           <li><a href="/laughs#game">Entertaining Game</a></li>
           <li><a href="/laughs#vid">Hilarious Videos</a></li>
         </ul>
-      <li><a href="/profile">Profile</a></li>
+      <li style="background-color:blue"><a href="/profile">Profile</a></li>
         <ul>
           <li><a href="#contact">Sign Out</a></li>
         </ul>
@@ -41,7 +41,7 @@
     </div>
 
     <article>
-      <h2> Questions </h2>
+      <h3> Questions </h3>
       <p> Welcome {{user}}, what do you need today? </p>
       <ul>
         <li><a href="/lgif?">I need a few laughs</a></li>
