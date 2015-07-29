@@ -35,6 +35,7 @@ class Profile(ndb.Model):
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
+    favorite = ndb.StringProperty(repeated=True)
     #url = ndb.StringProperty()
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -58,14 +59,18 @@ class Comment(ndb.Model):
     comment = ndb.TextProperty(required=True)
     datetime = ndb.DateTimeProperty(auto_now_add=True)
 
+def GetProfile():
+    user = users.get_current_user()
+    current_profile = Profile.get_by_id(user.user_id())
+    if current_profile == None:
+        current_profile = Profile(email = user.nickname(), id = user.user_id())
+        current_profile.put()
+    return current_profile
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        GetProfile()
         user = users.get_current_user()
-        current_profile = Profile.get_by_id(user.user_id())
-        if current_profile == None:
-            current_profile = Profile(email = user.nickname(), id = user.user_id())
-            current_profile.put()
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.user_id(), users.create_logout_url('/')))
@@ -178,7 +183,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-'''class Favorites(webapp2.RequestHandler):
+class Favorites(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -189,14 +194,13 @@ class MGifHandler(webapp2.RequestHandler):
         rand_num = random.randint(0,39)
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
         template = jinja_environment.get_template('templates/laughs.html')
+        current_profile = GetProfile()
+        url = gif_url
+        current_profile.favorite.append(url)
+        current_profile.put()
 
-        #profile_user = Profile.get_current_user()
-        #url = gif_url
-        #profile_user.url = url
-        #profile_user.put()
 
-
-        #self.response.out.write(template.render({'results': gif_url}))'''
+        #self.response.out.write(template.render({'results': gif_url}))
 
 
 app = webapp2.WSGIApplication([
@@ -209,5 +213,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-    #('/fav', Favorites),
+    ('/fav', Favorites),
 ], debug=True)
