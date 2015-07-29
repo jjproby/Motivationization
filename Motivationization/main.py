@@ -140,8 +140,9 @@ class ProfileHandler(webapp2.RequestHandler):
         template_values = {
             'post_keys' : users.get_current_user().post_keys
         }'''
+        user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
-        self.response.write(template.render({'images' : current_profile.favorite}))
+        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite}))
 
 
 
