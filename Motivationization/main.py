@@ -30,13 +30,13 @@ jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
-class User(ndb.Model):
+class Profile(ndb.Model):
     email = ndb.StringProperty(required=True)
     post_keys = []
     post_keys = ndb.KeyProperty(repeated=True)
     feelings = ndb.BlobProperty(indexed=True)
 
-    #url = ndb.StringProperty()
+    url = ndb.StringProperty()
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -63,18 +63,17 @@ class Comment(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        current_profile = Profile.get_by_id(user.user_id())
+        if current_profile == None:
+            current_profile = Profile(email = user.nickname())
+            current_profile.put()
         if user:
-
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                        (user.nickname(), users.create_logout_url('/')))
+                        (user.user_id(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
             self.response.out.write(template.render({"user": user.nickname()}))
             self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
-
 #things
-
-            #Hello this is a comment
-
 
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
@@ -180,7 +179,7 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-'''class Favorites(webapp2.RequestHandler):
+class Favorites(webapp2.RequestHandler):
     def get(self):
         base_url = 'http://api.giphy.com/v1/gifs/search?q='
         api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
@@ -197,7 +196,7 @@ class MGifHandler(webapp2.RequestHandler):
         key = gif.put()
         id_var = key.id
 
-        self.response.out.write(template.render({'results': gif_url}))'''
+        self.response.out.write(template.render({'results': gif_url}))
 
 
 app = webapp2.WSGIApplication([
@@ -210,5 +209,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/lgif', LGifHandler),
     ('/mgif', MGifHandler),
-#    ('/fav', Favorites),
+    ('/fav', Favorites),
 ], debug=True)
