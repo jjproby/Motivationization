@@ -1,0 +1,146 @@
+html{
+
+  background-size: 1000px;
+  background-color: #333;
+  color: #000;
+  /*background-attachment: fixed;*/
+
+}
+
+h1{
+  font-size: 600%;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #133;
+  /*text-shadow:
+    10px -10px 0 #144,
+    -10px 10px 0 #133,
+    -10px 10px 0 #144,
+    10px -10px 0 #133;*/
+}
+
+h2{
+  font-size: 300%;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #133;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+    padding-top: 235px;
+    overflow: hidden;
+    position:relative;
+    border-radius: 10px;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav ul ul{
+  display: none;
+}
+
+.nav ul li{
+  position: relative;
+}
+
+.nav ul li:hover{
+  background: #4b545f;
+}
+
+.nav ul li:hover > ul{
+  margin:0px;
+  padding:0px;
+}
+
+.nav ul li:hover > ul li{
+  float:none;
+  display:block;
+}
+
+.nav ul li:hover > ul li a{
+  color: #666;
+  min-width: 150px;
+}
+
+.nav ul li:hover > ul li a:hover{
+  color: #fff;
+}
+
+.nav ul li ul{
+  position: absolute;
+  top: 30px;
+  left: 0px;
+}
+
+.nav ul li:hover > ul{
+  display: block;
+}
+
+.nav a:link, a:visited {
+    width: 244px;
+    font-weight: bold;
+    color: #133;
+    background-color: #B8E6E6;
+    text-align: center;
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-style: ridge;
+    border-color: #133;
+    border-width: 3px;
+}
+
+div.nav a:hover, a:active {
+    background-color: #199;
+}
+
+p{
+  font-size: 150%;
+  background-color: #B8E6E6;
+  color: #144;
+  width: 900px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 5px;
+  border-style: ridge;
+  border-width: 10px;
+  border-color: #399;
+}
+
+img{
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-style: ridge;
+  border-color: #399;
+  border-width: 10px;
+}
+
+div.pages{
+  position: absolute;
+  top:50;
+  bottom: 100;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-image: url("/images/landscape2.jpg");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /*height: 5000px;*/
+  width: 1000px;
+  /*-webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;*/
+  border:5px solid #FFE680;
+  background-color:#000000;
+  /*-webkit-box-shadow: #B3B3B3 5px 5px 5px;
+  -moz-box-shadow: #B3B3B3 5px 5px 5px;
+  box-shadow: #B3B3B3 5px 5px 5px;*/
+  color: white;
+  text-align: center;
+}
