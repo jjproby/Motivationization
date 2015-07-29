@@ -73,7 +73,7 @@ class MainHandler(webapp2.RequestHandler):
             template = jinja_environment.get_template('templates/main.html')
             self.response.out.write(template.render({"user": user.nickname()}))
             self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
-
+#things
 
 class SallyHandler(webapp2.RequestHandler):
     def get(self):
