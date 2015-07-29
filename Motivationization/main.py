@@ -76,8 +76,8 @@ class MainHandler(webapp2.RequestHandler):
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.user_id(), users.create_logout_url('/')))
             template = jinja_environment.get_template('templates/main.html')
-            self.response.out.write(template.render({"user": user.nickname()}))
-            self.response.out.write('(<a href="%s">sign out</a>)' % users.create_logout_url('/'))
+            self.response.out.write(template.render({"user": user.nickname(), "signout": users.create_logout_url('/')}))
+
 #things22
 
 class SallyHandler(webapp2.RequestHandler):
@@ -200,12 +200,6 @@ class Favorites(webapp2.RequestHandler):
         current_profile.favorite.append(url)
         current_profile.put()
         self.response.out.write(template.render())
-
-
-class SendEmail(webapp2.RequestHandler):
-    def get(self):
-        user_address = Profile.
-
 
 
 app = webapp2.WSGIApplication([
