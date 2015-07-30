@@ -129,11 +129,23 @@ class ProfileHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/profile.html')
         current_profile = GetProfile()
         url = self.request.get('id')
-        current_profile.favorite.append(url)
-        current_profile.put()
+        if url != "":
+            if url not in current_profile.favorite:
+                current_profile.favorite.append(url)
+                current_profile.put()
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
-        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite}))
+        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite, "signout": users.create_logout_url('/')}))
+
+class DeleteHandler(webapp2.RequestHandler):
+    def get(self):
+        current_profile= GetProfile()
+        current_profile.favorite.pop(int(self.request.get('index')))
+        if 'index' <= len(current_profile.favorite):
+            current_profile.put()
+        user = users.get_current_user()
+        template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
+        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite, "signout": users.create_logout_url('/')}))
 
 class QuestHandler(webapp2.RequestHandler):
     def get(self):
@@ -151,7 +163,7 @@ class LGifHandler(webapp2.RequestHandler):
         rand_num = random.randint(0,39)
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
         template = jinja_environment.get_template('templates/laughs.html')
-        self.response.out.write(template.render({'results': gif_url}))
+        self.response.out.write(template.render({'results': gif_url, "signout": users.create_logout_url('/')}))
 
 class MGifHandler(webapp2.RequestHandler):
     def get(self):
@@ -164,7 +176,7 @@ class MGifHandler(webapp2.RequestHandler):
         rand_num = random.randint(0,39)
         gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
         template = jinja_environment.get_template('templates/motivation.html')
-        self.response.out.write(template.render({'results': gif_url}))
+        self.response.out.write(template.render({'results': gif_url, "signout": users.create_logout_url('/')}))
 
 
 app = webapp2.WSGIApplication([
@@ -175,4 +187,5 @@ app = webapp2.WSGIApplication([
     ('/question', QuestHandler),
     ('/laughs', LGifHandler),
     ('/motivation', MGifHandler),
+    ('/delete', DeleteHandler)
 ], debug=True)

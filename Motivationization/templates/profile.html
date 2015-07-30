@@ -45,7 +45,11 @@
     <br>
 
     {% for i in images %}
-      <img src= {{i}}></img><br>
+      <img src= {{i}}></img>
+      <form method="get" action="/delete">
+        <button type="submit">Remove</button>
+        <input type='hidden' name='index' value = {{loop.index - 1}}><br>
+      </form>
       {% endfor %}
     <!--{% for post_key in post_keys %}
       <h3>Name: {{ post_key.get().title }}</h3>
