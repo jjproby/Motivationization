@@ -10,6 +10,8 @@ function happy(){
   alert("Great, make sure to make someone else smile today");
 };
 
+
+
 var howOften = 5; //number often in seconds to rotate
 var current = 0; //start the counter at 0
 var ns6 = document.getElementById&&!document.all; //detect netscape 6
