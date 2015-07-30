@@ -67,6 +67,7 @@ h4{
 h5{
   font-size: 125%;
   color: #EEAA55;
+  margin-top: -50px;
   text-shadow:
     1px 1px 0 #555,
     1px 1px 0 #555,
@@ -76,10 +77,45 @@ h5{
 
 /* Single-direction drop shadow */
 
-hr{
-    height: 12px;
+hr.sally{
+    height: 50px;
     border: 0;
-    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0px 50px 50px -50px rgba(238, 170, 85, 0.5);
+    color: #EEAA55;
+    margin-bottom: -50px;
+}
+
+hr.motivate{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(238, 221, 85, 0.5);
+    color: #EEDD55;
+    margin-top: -25px;
+}
+
+hr.laugh{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(85, 221, 85, 0.5);
+    color: #EEDD55;
+    margin-top: -25px;
+}
+hr.laughbot{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(85, 221, 85, 0.5);
+    color: #EEDD55;
+    margin-top: -25px;
+    margin-bottom: -50px;
+}
+
+hr.motivatebot{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(238, 221, 85, 0.5);
+    color: #EEDD55;
+    margin-top: -25px;
+    margin-bottom: -50px;
 }
 
 button.motivate{
@@ -96,6 +132,34 @@ button.motivate{
   color:#EEDD55;
 }
 
+button.laugh{
+  background-color: #EEE;
+  border-width: medium;
+  border-style: ridge;
+  border-color: #55DD55;
+  font-size: 250%;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  color:#55DD55;
+}
+
+button.laugh2{
+  background-color: #EEE;
+  border-width: medium;
+  border-style: ridge;
+  border-color: #55DD55;
+  font-size: 200%;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  color:#55DD55;
+}
+
 button.motivate2{
   background-color: #EEE;
   border-width: medium;
@@ -108,6 +172,31 @@ button.motivate2{
     1px 1px 0 #555,
     1px 1px 0 #555;
   color:#EEDD55;
+}
+
+iframe.motivate{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(238, 221, 85, 0.5);
+}
+
+iframe.laugh{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(85, 221, 85, 0.5);
+}
+
+img.laugh{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(85, 221, 85, 0.5);
+}
+
+img.motivate{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(238, 221, 85, 0.5);
+}
+
+textarea{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(238, 170, 85, 0.5);
 }
 
 form.post{
@@ -129,6 +218,101 @@ form.comment{
     1px 1px 0 #555,
     1px 1px 0 #555,
     1px 1px 0 #555;
+}
+
+p.sally{
+  color: #EEAA55;
+  margin-top: -25px;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+}
+
+p.motivate{
+  color: #EEDD55;
+  margin-top: -25px;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  font-size: 125%;
+}
+
+p.motivate a{
+  color: #555;
+  margin-top: -25px;
+  text-shadow:
+    -1px 0px 0 #EEDD55,
+    0px 1px 0 #EEDD55,
+    1px 0px 0 #EEDD55,
+    0px -1px 0 #EEDD55;
+  font-size: 150%;
+  text-decoration: none;
+}
+
+dl dt.tqpQuote{
+  text-decoration: none;
+  color: #555;
+  border: 0;
+  box-shadow: inset 0px 0px 50px 50px rgba(238, 221, 85, 0.5);
+  text-shadow:
+    1px 1px 0 #FFF,
+    1px 1px 0 #FFF,
+    1px 1px 0 #FFF,
+    1px 1px 0 #FFF;
+  font-size: large;
+  font-size: 130%;
+}
+
+dl dd a{
+  text-decoration: none;
+  color: #FFF;
+  border: 0;
+  box-shadow: 0px 0px 10px 10px rgba(238, 221, 85, 0.5);
+  font-size: small;
+  text-shadow:
+    -1px 0px 0 #555,
+    0px 1px 0 #555,
+    1px 0px 0 #555,
+    0px -1px 0 #555;
+}
+
+span.tqpFooter{
+  text-decoration: none;
+  color: #555;
+  text-shadow:
+    -1px 0px 0 #EEDD55,
+    0px 1px 0 #EEDD55,
+    1px 0px 0 #EEDD55,
+    0px -1px 0 #EEDD55;
+}
+span.tqpFooter a{
+  text-decoration: none;
+  color: #555;
+  text-shadow:
+    -1px 0px 0 #EEDD55,
+    0px 1px 0 #EEDD55,
+    1px 0px 0 #EEDD55,
+    0px -1px 0 #EEDD55;
+}
+
+input.sally{
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: #EEAA55;
+  border-style: ridge;
+  border-width: medium;
+  border-color: #EEAA55;
+  font-size: large;
+  color: white;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+    background-color: white;
 }
 
 ul#question{
@@ -188,15 +372,6 @@ ul#question li a{
       2.5px 2.5px 0 #555;
 }
 
-.nav ul ul{
-  display: none;
-  position: absolute;
-}
-
-.nav ul ul li{
-  display: block;
-}
-
 .nav ul li{
   position: relative;
   display: inline-block;
@@ -209,38 +384,6 @@ ul#question li a{
 .nav ul li:hover{
   color: #DFE;
   background-color: #144;
-}
-
-.nav ul li:hover > ul{
-  margin:0px;
-  padding:0px;
-  display: block;
-}
-
-.nav ul li:hover > ul li{
-  float:none;
-  display:block;
-  color: #DFE;
-  background-color: #144;
-}
-
-.nav ul li:hover > ul li a{
-  color: #DFE;
-  min-width: 150px;
-}
-
-.nav ul li:hover > ul li a:hover{
-  color: #DFE;
-}
-
-.nav ul li ul{
-  position: absolute;
-  top: 30px;
-  left: 0px;
-}
-
-.nav ul li:hover > ul{
-  display: block;
 }
 
 /*.nav a:link, a:visited {

@@ -17,58 +17,45 @@
       Ask Sally
     </h2>
     <div class="nav">
-    <ul>
-      <li style="background-color:#DD5555"><a href="/">Home</a></li>
-      <li style="background-color:#EEAA55"><a href="/asksally">Sally</a></li>
-      <li style="background-color:#EEDD55"><a href="/motivation">Motivation</a></li>
-        <ul>
-          <li><a href="/motivation#quotes">Quotes of the Day</a></li>
-          <li><a href="/motivation#gif">Motivational Gifs</a></li>
-          <li><a href="motivation#vid">Inspirational Videos</a></li>
-        </ul>
-      <li style="background-color:#55DD55"><a href="/laughs">Laughs</a></li>
-        <ul>
-          <li><a href="/laughs#gif">Funny Gifs</a></li>
-          <li><a href="/laughs#game">Entertaining Game</a></li>
-          <li><a href="/laughs#vid">Hilarious Videos</a></li>
-        </ul>
-      <li style="background-color:#55D"><a href="/profile">Profile</a></li>
-        <ul>
-          <li><a href="#contact">Sign Out</a></li>
-        </ul>
-    </ul>
+      <ul>
+        <li style="background-color:#DD5555"><a href="/">Home</a></li>
+        <li style="background-color:#EEAA55"><a href="/asksally">Sally</a></li>
+        <li style="background-color:#EEDD55"><a href="/motivation">Motivation</a></li>
+        <li style="background-color:#55DD55"><a href="/laughs">Laughs</a></li>
+        <li style="background-color:#55D"><a href="/profile">Profile</a></li>
+      </ul>
     </div>
     <br><br><br>
     <form class="post" action="/asksally" method="post">
-      <div>Name: <br><input name="title"></input></div>
+      <div>Name: <br><textarea name="title"></textarea></div>
       <div>Question: <br><textarea name="content" rows="3" cols="60"></textarea></div>
 
-      <div><input type="submit" value="Add Post"></div>
+      <div><input class="sally" type="submit" value="Add Post"></div>
     </form>
 
-    <hr>
+    <hr class="sally">
 
     <h3 style="color:#EEAA55">Previously Asked Questions</h3>
-    <hr>
+    <hr class="sally">
     {% for post in posts %}
       <h4>Name: {{ post.title }}</h4>
       <h5>{{ post.date.strftime("%d/%m/%y") }}</h5>
-      <p>{{ post.content }}</p>
+      <p class="sally">{{ post.content }}</p>
       {% for comment_key in post.comment_keys %}
         <h4>Commenter: {{ comment_key.get().name }}</h4>
         <!--<h5> comment_key.datetime.strftime("%d/%m/%y") }}</h5>-->
-        <p>{{ comment_key.get().comment }}</p>
+        <p class="sally">{{ comment_key.get().comment }}</p>
       {% endfor %}
       <!-- This form is to create a new comment, it needs to send to '/comment using the post method' -->
       <form class="comment" action="/comment" method="post">
         <!-- It needs to take inputs for the commenters name and comment -->
-        <p>Name: <br><input type="text" name="name2"/></p>
+        <p>Name: <br><textarea name="name2"></textarea></p>
         <p>Comment: <br><textarea name="comment" rows="3" cols="60"></textarea></p>
         <!-- This next line is a sneaky way to make sure we know what post we are talking about -->
         <div><input type="hidden" name="post_url_key" value="{{ post.key.urlsafe() }}">
-        <div><input type="submit" value="Leave Comment"></div>
+        <div><input class="sally" type="submit" value="Leave Comment"></div>
       </form>
-      <hr>
+      <hr class="sally">
     {% endfor %}
     <br>
     <footer style="background-color:#EEAA55">
