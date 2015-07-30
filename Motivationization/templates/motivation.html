@@ -8,6 +8,7 @@
 
   <body>
     <div class="pages">
+      <img class='slideshow' alt='Motivationization' src='/images/fun.jpg' height='600' width='1000' border='0' />
     <h1>
       Motivationization
     </h1>
@@ -16,47 +17,52 @@
     </h2>
     <div class="nav">
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/asksally">Sally</a></li>
-      <li><a href="/motivation">Motivation</a></li>
+      <li style="background-color:#DD5555"><a href="/">Home</a></li>
+      <li style="background-color:#EEAA55"><a href="/asksally">Sally</a></li>
+      <li style="background-color:#EEDD55"><a href="/motivation">Motivation</a></li>
         <ul>
-          <li><a href="/motivation#quote">Quotes of the Day</a></li>
+          <li><a href="/motivation#quotes">Quotes of the Day</a></li>
           <li><a href="/motivation#gif">Motivational Gifs</a></li>
           <li><a href="/motivation#vid">Inspirational Videos</a></li>
         </ul>
-      <li><a href="/laughs">Laughs</a></li>
+      <li style="background-color:#55DD55"><a href="/laughs">Laughs</a></li>
         <ul>
           <li><a href="/laughs#gif">Funny Gifs</a></li>
           <li><a href="/laughs#game">Entertaining Game</a></li>
           <li><a href="/laughs#vid">Hilarious Videos</a></li>
         </ul>
-      <li><a href="/profile">Profile</a></li>
+      <li style="background-color:#55D"><a href="/profile">Profile</a></li>
         <ul>
-          <li><a href="">Sign Out</a></li>
+          <li><a href="#contact">Sign Out</a></li>
         </ul>
     </ul>
     </div>
     <br>
+
     <a name="quote"></a>
+    <h3 style="color:#EEDD55">Motivational Quotes of the Day</h3>
+
     <!--JavaScript code for Motivational Quotes of the Day, http://www.tqpage.com/-->
     <script language="javascript" src="http://www.quotationspage.com/data/mqotd.js">
     </script> <!--End JavaScript Quotations code-->
 
-    <br>
-    <a name="gif"></a>
 
+    <br>
     <img src = "{{results}}">
-    <form method="get" action="/mgif">
+    <form method="get" action="/motivation">
       <button type="submit">Motivationl gifs</button><br>
     </form>
     <br>
-    <form method = "get" action ="/fav">
+    <form method = "get" action ="/profile">
+      <input type = "hidden" name = "id" value = "{{results}}">
       <button type="submit">Add to favorites</button>
     </form>
-
+    <img src = {{images}}>
     <br>
-    <a name="vid"></a>
     <h1> Motivation Videos </h1>
+    <a name="vid"></a>
+    <h3 style="color:#EEDD55">Motivational Videos</h3>
+
     <article id= "MotivationVids">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/nuHfVn_cfHU" frameborder="0" allowfullscreen></iframe> <br>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/26U_seo0a1g" frameborder="0" allowfullscreen></iframe> <br>
@@ -64,13 +70,12 @@
       <iframe width="560" height="315" src="https://www.youtube.com/embed/vVJJj9hshCM" frameborder="0" allowfullscreen></iframe>
     </article>
     <br>
-    <a href="/">Home</a>
-    <br>
-    <footer>
-      <a href="https://twitter.com/intent/tweet?url=http://www.motivation.com/&amp;text=Motivation."><img src = "http://www.goodwillsacto.org/wp-content/uploads/2010/09/TwitterIcon_small1.png">
-      <a href="https://plus.google.com/share?url=http://www.motivation.com/"><img src = "http://pictures.dealer.com/l/larichesubarusoa/1414/755d4e96d57951d987ead8a99dda4661x.jpg">
-      <a href="http://www.linkedin.com/shareArticle?url=http://www.motivation.com/"><img src = "http://static1.squarespace.com/static/541c4101e4b0462bd0eee674/t/544e3272e4b0529748d72c43/1414410866668/linkedin-icon(small).png">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.motivation.com/"><img src = "http://www.chas.co.uk/Images/Facebook_icon_small.gif">
+    <footer style="background-color:#EEDD55">
+      <a style="align:left" href="{{signout}}">Sign Out&emsp;&emsp;</a>
+      <a href="https://twitter.com/intent/tweet?url=http://www.motivation.com/&amp;text=Motivation."><img src = "http://www.goodwillsacto.org/wp-content/uploads/2010/09/TwitterIcon_small1.png"></a>
+      <a href="https://plus.google.com/share?url=http://www.motivation.com/"><img src = "http://pictures.dealer.com/l/larichesubarusoa/1414/755d4e96d57951d987ead8a99dda4661x.jpg"></a>
+      <a href="http://www.linkedin.com/shareArticle?url=http://www.motivation.com/"><img src = "http://static1.squarespace.com/static/541c4101e4b0462bd0eee674/t/544e3272e4b0529748d72c43/1414410866668/linkedin-icon(small).png"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://www.motivation.com/"><img src = "http://www.chas.co.uk/Images/Facebook_icon_small.gif"></a>
     </footer>
   </div>
   </body>
