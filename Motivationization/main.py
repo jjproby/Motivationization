@@ -126,6 +126,7 @@ class CommentHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
+        logging.info('displaying profile page')
         template = jinja_environment.get_template('templates/profile.html')
         current_profile = GetProfile()
         url = self.request.get('id')
@@ -135,17 +136,19 @@ class ProfileHandler(webapp2.RequestHandler):
                 current_profile.put()
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
-        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite, "signout": users.create_logout_url('/')}))
+        self.response.write(template.render(
+        {"user": user.nickname(),
+         'images' : current_profile.favorite,
+         "signout": users.create_logout_url('/')}))
 
 class DeleteHandler(webapp2.RequestHandler):
     def get(self):
         current_profile= GetProfile()
-        current_profile.favorite.pop(int(self.request.get('index')))
-        if 'index' <= len(current_profile.favorite):
-            current_profile.put()
-        user = users.get_current_user()
-        template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
-        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite, "signout": users.create_logout_url('/')}))
+        index =int(self.request.get('index'))
+        logging.info('deleting item %s', index)
+        current_profile.favorite.pop(index)
+        current_profile.put()
+        self.redirect("/profile")
 
 class QuestHandler(webapp2.RequestHandler):
     def get(self):
