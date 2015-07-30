@@ -510,9 +510,10 @@ footer{
     1px 1px 0 #555;
 }
 
-footer a{
+footer a:link, a:visited{
   text-decoration: none;
   font-size: xx-large;
+  color: white;
 }
 
 footer a img{
