@@ -140,8 +140,9 @@ class ProfileHandler(webapp2.RequestHandler):
 class DeleteHandler(webapp2.RequestHandler):
     def get(self):
         current_profile= GetProfile()
-        current_profile.favorite.pop(int(self.request.get('index')))
-        if 'index' <= len(current_profile.favorite):
+        index =int(self.request.get('index'))
+        current_profile.favorite.pop(index)
+        if index <= len(current_profile.favorite):
             current_profile.put()
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
