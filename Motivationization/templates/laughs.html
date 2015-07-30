@@ -16,50 +16,38 @@
       Laughs
     </h2>
     <div class="nav">
-    <ul>
-      <li style="background-color:#DD5555"><a href="/">Home</a></li>
-      <li style="background-color:#EEAA55"><a href="/asksally">Sally</a></li>
-      <li style="background-color:#EEDD55"><a href="/motivation">Motivation</a></li>
-        <ul>
-          <li><a href="/motivation#quotes">Quotes of the Day</a></li>
-          <li><a href="/motivation#gif">Motivational Gifs</a></li>
-          <li><a href="motivation#vid">Inspirational Videos</a></li>
-        </ul>
-      <li style="background-color:#55DD55"><a href="/laughs">Laughs</a></li>
-        <ul>
-          <li><a href="/laughs#gif">Funny Gifs</a></li>
-          <li><a href="/laughs#game">Entertaining Game</a></li>
-          <li><a href="/laughs#vid">Hilarious Videos</a></li>
-        </ul>
-      <li style="background-color:#55D"><a href="/profile">Profile</a></li>
-        <ul>
-          <li><a href="#contact">Sign Out</a></li>
-        </ul>
-    </ul>
+      <ul>
+        <li style="background-color:#DD5555"><a href="/">Home</a></li>
+        <li style="background-color:#EEAA55"><a href="/asksally">Sally</a></li>
+        <li style="background-color:#EEDD55"><a href="/motivation">Motivation</a></li>
+        <li style="background-color:#55DD55"><a href="/laughs">Laughs</a></li>
+        <li style="background-color:#55D"><a href="/profile">Profile</a></li>
+      </ul>
     </div>
-    <br>
-    <a name="gif"></a>
-    <img src = "{{results}}">
+    <br><br><br>
     <form method="get" action="/lgif">
-      <button type="submit">Funny gifs</button><br>
-    </form>
+      <button class="laugh" type="submit">Funny gifs</button><br>
+    </form><br>
+    <img class="laugh" src = "{{results}}">
     <form method = "get" action ="/fav">
-      <button type="submit">Add to favorites</button>
-    </form>
-
-    <br>
-    <a name="game"></a>
-
+      <button class="laugh2" type="submit">Add to favorites</button>
+    </form><br><br>
+    <hr class="laughbot">
+    <h3 style="color:#55DD55">Funny Game</h3>
+    <hr class="laugh">
     <embed  src="http://dk.filmomania.pl/j/Unfair_Mario62787.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="650" height="540"></embed><BR /><a href="http://www.unfair-mario.com" title="unfair mario" target="_blank"><strong>Unfair Mario</strong></a>
+    <br><br>
+  <hr class="laughbot">
+  <h3 style="color:#55DD55">Funny Vids</h3>
+  <hr class="laugh">
+    <iframe class="laugh" width="560" height="315" src="https://www.youtube.com/embed/vzHOfSCLym4?list=PL07184A85A40C3E1F" frameborder="0" allowfullscreen></iframe><br>
     <br>
-  <a name = "vid"></a>
-  <h1> Funny Vids </h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/vzHOfSCLym4?list=PL07184A85A40C3E1F" frameborder="0" allowfullscreen></iframe><br>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ty62YzGryU4" frameborder="0" allowfullscreen></iframe><br>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/xlOIy6QEbes" frameborder="0" allowfullscreen></iframe><br>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/vmd1qMN5Yo0" frameborder="0" allowfullscreen></iframe>
+    <iframe class="laugh" width="560" height="315" src="https://www.youtube.com/embed/ty62YzGryU4" frameborder="0" allowfullscreen></iframe><br>
     <br>
-  <a href="/">Home</a>
+    <iframe class="laugh" width="560" height="315" src="https://www.youtube.com/embed/xlOIy6QEbes" frameborder="0" allowfullscreen></iframe><br>
+    <br>
+    <iframe class="laugh" width="560" height="315" src="https://www.youtube.com/embed/vmd1qMN5Yo0" frameborder="0" allowfullscreen></iframe>
+    <br>
     <br>
     <footer style="background-color:#55DD55">
       <a style="align:left" href="{{signout}}">Sign Out&emsp;&emsp;</a>
