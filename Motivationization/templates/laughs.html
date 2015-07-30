@@ -23,7 +23,7 @@
         <ul>
           <li><a href="/motivation#quotes">Quotes of the Day</a></li>
           <li><a href="/motivation#gif">Motivational Gifs</a></li>
-          <li><a href="motivation#vid">Inspirational Videos</a></li>
+          <li><a href="/motivation#vid">Inspirational Videos</a></li>
         </ul>
       <li style="background-color:#55DD55"><a href="/laughs">Laughs</a></li>
         <ul>
@@ -40,14 +40,15 @@
     <br>
     <a name="gif"></a>
     <img src = "{{results}}">
-    <form method="get" action="/lgif">
+    <form method="get" action="/laughs">
       <button type="submit">Funny gifs</button><br>
     </form>
-    <form method = "get" action ="/fav">
+    <br>
+    <form method = "get" action ="/profile">
+      <input type = "hidden" name = "id" value = "{{results}}">
       <button type="submit">Add to favorites</button>
     </form>
-
-    <br>
+    <img src = {{images}}>
     <a name="game"></a>
 
     <embed  src="http://dk.filmomania.pl/j/Unfair_Mario62787.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="650" height="540"></embed><BR /><a href="http://www.unfair-mario.com" title="unfair mario" target="_blank"><strong>Unfair Mario</strong></a>

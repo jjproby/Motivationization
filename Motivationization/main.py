@@ -131,29 +131,13 @@ class CommentHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
+        template = jinja_environment.get_template('templates/profile.html')
         current_profile = GetProfile()
-        '''    user = users.get_current_user()
-        # Get all of the student data from the datastore
-        q = users.get_current_user()
+        url = self.request.get('id')
+        current_profile.favorite.append(url)
+        current_profile.put()
+        self.response.write(template.render({'images' : current_profile.favorite }))
 
-        # Pass the data to the template
-        template_values = {
-            'post_keys' : users.get_current_user().post_keys
-        }'''
-        template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
-        self.response.write(template.render({'images' : current_profile.favorite}))
-
-
-
-class MotivateHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/motivation.html')
-        self.response.write(template.render())
-
-class LaughHandler(webapp2.RequestHandler):
-    def get(self):
-        template = JINJA_ENVIRONMENT.get_template('/templates/laughs.html')
-        self.response.write(template.render())
 
 class QuestHandler(webapp2.RequestHandler):
     def get(self):
@@ -186,33 +170,13 @@ class MGifHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/motivation.html')
         self.response.out.write(template.render({'results': gif_url}))
 
-class Favorites(webapp2.RequestHandler):
-    def get(self):
-        base_url = 'http://api.giphy.com/v1/gifs/search?q='
-        api_key_url = '&api_key=dc6zaTOxFJmzC&limit=40'
-        search_term = 'motivation'
-        giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url)
-        giphy_json_content = giphy_data_source.content
-        parsed_giphy_dictionary = json.loads(giphy_json_content)
-        rand_num = random.randint(0,39)
-        gif_url= parsed_giphy_dictionary['data'][rand_num]['images']['original']['url']
-        template = jinja_environment.get_template('templates/profile.html')
-        current_profile = GetProfile()
-        url = gif_url
-        current_profile.favorite.append(url)
-        current_profile.put()
-        self.response.out.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/comment', CommentHandler),
     ('/asksally', SallyHandler),
     ('/profile', ProfileHandler),
-    ('/motivation', MotivateHandler),
-    ('/laughs', LaughHandler),
     ('/question', QuestHandler),
-    ('/lgif', LGifHandler),
-    ('/mgif', MGifHandler),
-    ('/fav', Favorites),
-
+    ('/laughs', LGifHandler),
+    ('/motivation', MGifHandler),
 ], debug=True)
