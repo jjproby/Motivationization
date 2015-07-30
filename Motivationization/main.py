@@ -104,12 +104,7 @@ class SallyHandler(webapp2.RequestHandler):
         post = Post(title=title, content=content)
         post_key = post.put()
         # Attach the post to the user
-        '''user_url_key = self.request.get('user_url_key')
-        user_key = ndb.Key(urlsafe=user_url_key)
-        user = user_key.get()
 
-        user.post_keys.append(post_key)
-        user.put()'''
         # Redirect to the main handler that will render the template
         self.redirect('/asksally')
 
@@ -136,8 +131,9 @@ class ProfileHandler(webapp2.RequestHandler):
         url = self.request.get('id')
         current_profile.favorite.append(url)
         current_profile.put()
-        self.response.write(template.render({'images' : current_profile.favorite }))
-
+        user = users.get_current_user()
+        template = JINJA_ENVIRONMENT.get_template('/templates/profile.html')
+        self.response.write(template.render({"user": user.nickname(), 'images' : current_profile.favorite}))
 
 class QuestHandler(webapp2.RequestHandler):
     def get(self):
