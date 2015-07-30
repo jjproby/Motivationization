@@ -100,6 +100,33 @@ hr.laugh{
     color: #EEDD55;
     margin-top: -25px;
 }
+
+hr.feelings{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(85, 85, 221, 0.5);
+    color: #55D;
+    margin-top: -25px;
+    margin-bottom: -15px;
+}
+
+hr.profile{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(85, 85, 221, 0.5);
+    color: #55D;
+    margin-top: -20px;
+    margin-bottom: -25px;
+}
+
+hr.profiletop{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(85, 85, 221, 0.5);
+    color: #55D;
+    margin-top: 0px;
+}
+
 hr.laughbot{
     height: 50px;
     border: 0;
@@ -146,6 +173,20 @@ button.laugh{
   color:#55DD55;
 }
 
+button.profile{
+  background-color: #EEE;
+  border-width: medium;
+  border-style: ridge;
+  border-color: #55D;
+  font-size: 150%;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  color:#55D;
+}
+
 button.laugh2{
   background-color: #EEE;
   border-width: medium;
@@ -187,6 +228,17 @@ iframe.laugh{
 img.laugh{
   border: 0px;
   box-shadow: 0px 0px 50px rgba(85, 221, 85, 0.5);
+}
+
+img.feelings{
+  width: 100px;
+  height: 100px;
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(85, 85, 221, 0.5);
+}
+img.profile{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(85, 85, 221, 0.5);
 }
 
 img.motivate{
@@ -460,7 +512,7 @@ footer{
 
 footer a{
   text-decoration: none;
-  font-size: 175%;
+  font-size: xx-large;
 }
 
 footer a img{
