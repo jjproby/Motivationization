@@ -153,7 +153,7 @@ class DeleteHandler(webapp2.RequestHandler):
 class QuestHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('/templates/question.html')
-        self.response.write(template.render())
+        self.response.write(template.render({"signout": users.create_logout_url('/')}))
 
 class LGifHandler(webapp2.RequestHandler):
     def get(self):
@@ -187,7 +187,7 @@ app = webapp2.WSGIApplication([
     ('/comment', CommentHandler),
     ('/asksally', SallyHandler),
     ('/profile', ProfileHandler),
-    ('/question', QuestHandler),
+    ('/aboutus', QuestHandler),
     ('/laughs', LGifHandler),
     ('/motivation', MGifHandler),
     ('/delete', DeleteHandler)

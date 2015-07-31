@@ -119,6 +119,24 @@ hr.profile{
     margin-bottom: -25px;
 }
 
+hr.about{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(184, 77, 219, 0.5);
+    color: #B84DDB;
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+
+hr.aboutbot{
+    height: 50px;
+    border: 0;
+    box-shadow: inset 0px 50px 50px -50px rgba(184, 77, 219, 0.5);
+    color: #B84DDB;
+    margin-top: 0px;
+    margin-bottom: -50px;
+}
+
 hr.profiletop{
     height: 50px;
     border: 0;
@@ -236,9 +254,16 @@ img.feelings{
   border: 0px;
   box-shadow: 0px 0px 50px rgba(85, 85, 221, 0.5);
 }
+
 img.profile{
   border: 0px;
   box-shadow: 0px 0px 50px rgba(85, 85, 221, 0.5);
+}
+
+img.about{
+  border: 0px;
+  box-shadow: 0px 0px 50px rgba(184, 77, 219, 0.5);
+  margin-bottom: -25px;
 }
 
 img.motivate{
@@ -291,6 +316,60 @@ p.motivate{
     1px 1px 0 #555,
     1px 1px 0 #555;
   font-size: 125%;
+}
+
+p.about{
+  color: #B84DDB;
+  margin-top: -25px;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  font-size: 150%;
+}
+p.credit{
+  color: #B84DDB;
+  margin-top: -25px;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  text-align: left;
+  font-size: large;
+}
+span{
+  color: #FFF;
+  margin-top: -25px;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: #B84DDB;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+  font-size: 150%;
+}
+ul.about{
+  text-align: left;
+  color: #B84DDB;
+  margin-top: -25px;
+  white-space: pre-line;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
+}
+ul.about li{
+  color: #B84DDB;
+  margin-top: -25px;
+  text-shadow:
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555,
+    1px 1px 0 #555;
 }
 
 p.motivate a{
@@ -519,6 +598,34 @@ footer a:link, a:visited{
 footer a img{
   width: 40px;
   height: 40px;
+}
+
+#cont
+{
+  margin: 0px auto;
+  padding: 10px 10px;
+}
+
+#left
+{
+  margin-left: 35px;
+  width: 300px;
+  height: 320px;
+
+}
+
+#center
+{
+  width: 300px;
+  height: 320px;
+
+}
+
+#right
+{
+  width: 300px;
+  height: 320px;
+
 }
 
 div.pages{
